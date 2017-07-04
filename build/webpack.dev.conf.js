@@ -25,8 +25,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   output: {
     path: path.join(__dirname, '..', 'dist'),
     publicPath: '/static/',
-    filename: 'controllers/[name].js',
-    chunkFilename: 'controllers/[id].chunk.js?[chunkhash]'
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js?[chunkhash]'
   },
   module: {
     // rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
@@ -58,8 +58,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 var pages = Object.keys(getEntry('src/pages/**/*.html', 'src/pages/'))
 pages.forEach(function (pathname) {
   var conf = {
-    filename: resolve('dist/pages/' + pathname + '.html'), // 生成的html存放路径，相对于path
-    template: resolve('src/pages/' + pathname + '.html'), // html模板路径
+    filename: resolve('dist/' + pathname + '.html'), // 生成的html存放路径，相对于path
+    template: resolve( pathname + '.html'), // html模板路径
     inject: false // js插入的位置，true/'head'/'body'/false
     /*
         * 压缩这块，调用了html-minify，会导致压缩时候的很多html语法检查问题，
@@ -93,8 +93,9 @@ function getEntry (globPath, pathDir) {
     extname = path.extname(entry)
     basename = path.basename(entry, extname)
     pathname = path.join(dirname, basename)
-    pathname = pathDir ? pathname.replace(new RegExp('^' + pathDir), '') : pathname
-    entries[basename] = resolve(entry)
+    pathname = pathDir ? pathname.replace(new RegExp('^' + pathDir.replace('/\//g', '\\')), '') : pathname
+    console.log(pathname)
+    entries[pathname] = resolve(entry)
   }
   console.log(JSON.stringify(entries))
   return entries
