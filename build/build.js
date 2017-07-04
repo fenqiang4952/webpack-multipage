@@ -1,7 +1,7 @@
 require('./check-versions')()
 
 // process.env.NODE_ENV = 'production'
-
+const shell = require('shelljs')
 var ora = require('ora')
 var rm = require('rimraf')
 var path = require('path')
@@ -10,12 +10,14 @@ var webpack = require('webpack')
 var config = require('../config')
 // TODO 假装是测试环境
 var webpackConfig = require('./webpack.dev.conf')
+const assetsPath = path.join(__dirname, '../dist')
 
 var spinner = ora('building for production...')
 spinner.start()
 
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
+  shell.cp('-R', 'static', config.build.assetsRoot)
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()
     if (err) throw err
