@@ -10,7 +10,6 @@ const fn = (temp) => {
       type: 'GET',
       url: '/static/json/test.json'
     })
-      // 打印个人信息
     console.log(data.err.msg)
   } catch (err) {
     console.error(err)
