@@ -8,7 +8,6 @@ var path = require('path')
 var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('../config')
-// TODO 假装是测试环境
 var webpackConfig = require('./webpack.dev.conf')
 const assetsPath = path.join(__dirname, '../dist')
 
@@ -17,6 +16,7 @@ spinner.start()
 
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
+  // 将static目录拷贝到dist
   shell.cp('-R', 'static', config.build.assetsRoot)
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()
