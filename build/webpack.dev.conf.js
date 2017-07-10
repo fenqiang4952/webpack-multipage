@@ -43,12 +43,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       chunks: chunks,
       minChunks: 3 // 提取所有entry共同依赖的模块
     }),
-    // https://github.com/ampedandwired/html-webpack-plugin
-    // new HtmlWebpackPlugin({
-    //   filename: 'index.html',
-    //   template: 'index.html',
-    //   inject: true
-    // }),
     new FriendlyErrorsPlugin()
   ]
 })
