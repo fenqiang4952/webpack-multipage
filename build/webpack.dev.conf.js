@@ -37,7 +37,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CommonsChunkPlugin({
-      name: 'vendors', // 将公共模块提取，生成名为`vendors`的chunk
+      name: 'vendors', 
       chunks: chunks,
       minChunks: 3 // 提取所有entry共同依赖的模块
     }),
