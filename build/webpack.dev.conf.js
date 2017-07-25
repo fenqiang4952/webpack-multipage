@@ -39,7 +39,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new CommonsChunkPlugin({
       name: 'vendors', 
       chunks: chunks,
-      minChunks: 3 // 提取所有entry共同依赖的模块
+      minChunks: 3
     }),
     new FriendlyErrorsPlugin()
   ]
