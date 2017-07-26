@@ -14,9 +14,6 @@ const pagePath = 'src/pages/'
 
 var entries = getEntry(controllerPath + '**/*.js', controllerPath)
 var chunks = Object.keys(entries)
-// entries.forEach(function (name) {
-//   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
-// })
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   entry: entries,
